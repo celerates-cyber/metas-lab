@@ -33,11 +33,6 @@ create_instances() {
         RUN mkdir /var/run/sshd
         RUN echo 'root:password' | chpasswd
 
-        # Create a new user 'student' with password 'student' and allow sudo
-        RUN useradd -m student && \
-        echo 'student:student' | chpasswd && \
-        usermod -aG sudo student
-
         # Configure rsyslog
         RUN sed -i '/imklog/s/^/#/' /etc/rsyslog.conf # Uncomment to enable local logging
         RUN systemctl enable rsyslog.service
