@@ -1,4 +1,4 @@
-    #!/bin/bash
+#!/bin/bash
 
 create_network() {
     docker network create \
