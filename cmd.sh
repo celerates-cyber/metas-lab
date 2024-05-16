@@ -1,4 +1,4 @@
-#!/bin/bash
+    #!/bin/bash
 
 create_network() {
     docker network create \
@@ -30,8 +30,13 @@ create_instances() {
             rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
         # Configure SSH
-        #RUN mkdir /var/run/sshd
+        RUN mkdir /var/run/sshd
         RUN echo 'root:password' | chpasswd
+
+        # Create a new user 'student' with password 'student' and allow sudo
+        RUN useradd -m student && \
+        echo 'student:student' | chpasswd && \
+        usermod -aG sudo student
 
         # Configure rsyslog
         RUN sed -i '/imklog/s/^/#/' /etc/rsyslog.conf # Uncomment to enable local logging
