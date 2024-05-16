@@ -30,7 +30,7 @@ create_instances() {
             rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
         # Configure SSH
-        RUN mkdir /var/run/sshd
+        #RUN mkdir /var/run/sshd
         RUN echo 'root:password' | chpasswd
 
         # Configure rsyslog
